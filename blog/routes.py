@@ -1,6 +1,6 @@
 from blog import app, db
 from flask import render_template, flash, redirect, url_for,request
-from .forms import LoginForm, SignupForm, EditProfileForm, PostForm. ResetPasswordRequestForm, ResetPasswordForm
+from .forms import LoginForm, SignupForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from flask_login import login_user, logout_user, current_user, login_required
 from .models import User, Post
 from werkzeug.urls import url_parse
