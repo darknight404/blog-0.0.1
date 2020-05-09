@@ -6,10 +6,10 @@
     </div>
 </div>
 <br>
-<p>New User? <a href="{{ url_for('signup') }}">Click to Sign up!</a>
+<p>New User? <a href="{{ url_for('auth.signup') }}">Click to Sign up!</a>
 </p>
 <p>
     Forgot Your Password?
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    <a href="{{ url_for('auth.reset_password_request') }}">Click to Reset It</a>
 </p>
 {% endblock %}
