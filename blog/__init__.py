@@ -9,6 +9,7 @@ import os
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from elasticsearch import Elasticsearch
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -21,6 +22,9 @@ moment = Moment()
 def create_app():
     app = Flask(__name__,instance_relative_config=False)
     app.config.from_object("config.Config")
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+        if app.config['ELASTICSEARCH_URL'] else None
+
 
     db.init_app(app)
     migrate.init_app(app, db)
