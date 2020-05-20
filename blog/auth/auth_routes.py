@@ -10,7 +10,12 @@ from .auth_email import send_password_reset_email
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    User login page.
 
+    GET: Serve Log-in page.
+    POST: If form is valid and new user creation succeeds, redirect user to the logged-in homepage.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
 
@@ -34,6 +39,12 @@ def logout():
 
 @bp.route('/signup', methods=['GET', 'POST'])
 def signup():
+    """
+    User sign-up page.
+
+    GET: Serve sign-up page.
+    POST: If submitted credentials are valid, redirect user to the logged-in homepage.
+    """
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = SignupForm()
@@ -48,6 +59,7 @@ def signup():
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
+    """ reset password request route """
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = ResetPasswordRequestForm()
@@ -62,6 +74,7 @@ def reset_password_request():
 
 @bp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
+    """ reset password route"""
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     user = User.verify_reset_password_token(token)
