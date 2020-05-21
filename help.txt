@@ -1,0 +1,4 @@
+activate.bat
+start.bat
+deactivate
+pip install -U Celery

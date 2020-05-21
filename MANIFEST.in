@@ -1,0 +1,10 @@
+include blog/LICENSE
+include blog/requirements.txt
+include blog/README.md
+include blog/Dockerfile
+include blog/boot.sh
+include blog/start.bat
+include blog/activate.bat
+graft blog/templates
+graft blog/migrations
+global-exclude *.pyc
