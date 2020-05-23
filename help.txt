@@ -2,3 +2,4 @@ activate.bat
 start.bat
 deactivate
 pip install -U Celery
+"pip install -r requirements.txt"

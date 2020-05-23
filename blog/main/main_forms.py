@@ -4,11 +4,13 @@ from flask import request
 from wtforms.validators import ValidationError, DataRequired, Length
 from blog.models import User
 
+
 class EditProfileForm(FlaskForm):
     """ Edit Profile Form """
-    username = StringField('Username', validators=[DataRequired()])
-    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Submit')
+
+    username = StringField("Username", validators=[DataRequired()])
+    about_me = TextAreaField("About me", validators=[Length(min=0, max=140)])
+    submit = SubmitField("Submit")
 
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -18,25 +20,31 @@ class EditProfileForm(FlaskForm):
         if username.data != self.original_username:
             user = User.query.filter_by(username=self.username.data).first()
             if user is not None:
-                raise ValidationError('Please use a different username.')
+                raise ValidationError("Please use a different username.")
+
 
 class PostForm(FlaskForm):
     """ Post Form """
-    post = TextAreaField('Say something', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+
+    post = TextAreaField("Say something", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 
 class SearchForm(FlaskForm):
     """ Search box Form """
-    q = StringField('Search', validators=[DataRequired()])
+
+    q = StringField("Search", validators=[DataRequired()])
 
     def __init__(self, *args, **kwargs):
-        if 'formdata' not in kwargs:
-            kwargs['formdata'] = request.args
-        if 'csrf_enabled' not in kwargs:
-            kwargs['csrf_enabled'] = False
+        if "formdata" not in kwargs:
+            kwargs["formdata"] = request.args
+        if "csrf_enabled" not in kwargs:
+            kwargs["csrf_enabled"] = False
         super(SearchForm, self).__init__(*args, **kwargs)
 
+
 class MessageForm(FlaskForm):
-    message = TextAreaField('Message', validators=[
-        DataRequired(), Length(min=1, max=140)])
-    submit = SubmitField('Submit')
+    message = TextAreaField(
+        "Message", validators=[DataRequired(), Length(min=1, max=140)]
+    )
+    submit = SubmitField("Submit")
